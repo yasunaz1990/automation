@@ -6,11 +6,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,6 +21,7 @@ public class UIActions {
     private static WebDriver driver;
     private static WebDriverWait wait;
     private static Integer WAIT_TIME;
+    private static ArrayList<String> tabs;
 
     public UIActions() {
         WAIT_TIME = 40;
@@ -61,6 +64,14 @@ public class UIActions {
         }
     }
 
+    public void fullScreen() {
+        driver.manage().window().fullscreen();
+    }
+
+    public void maximize() {
+        driver.manage().window().maximize();
+    }
+
     public void closeBrowser() {
         if(driver != null){
             driver.close();
@@ -68,23 +79,41 @@ public class UIActions {
         }
     }
 
-    public void openTab() {
-        try {
-            Robot robot = new Robot();
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_T);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.keyRelease(KeyEvent.VK_T);
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
+    public void openNewTab() {
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+    }
 
+    public void switchToTab() {
+        ((JavascriptExecutor) driver).executeScript("window.open()");
+        tabs = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
     }
 
     public void closeTab() {
-
+        driver.close();
+        driver.switchTo().window(tabs.get(0));
     }
+
+    public void loadCookie(String name, String token) {
+        Cookie cookie = new Cookie(name, token);
+        driver.manage().addCookie(cookie);
+    }
+
+    public void deleteCookie(String name) {
+        driver.manage().deleteCookieNamed(name);
+    }
+
+    public void deleteAllCookies() {
+        driver.manage().deleteAllCookies();
+    }
+
     //endregion
+
+
+
+
 
 
     //region Page Actions
@@ -139,20 +168,33 @@ public class UIActions {
     }
 
 
-    public void doubleClick() {
-
+    public void doubleClick(By locator) {
+        new Actions(driver)
+                .doubleClick(waitUntilElementVisible(locator))
+                .build()
+                .perform();
     }
 
-    public void rightClick() {
-
+    public void rightClick(By locator) {
+        new Actions(driver)
+                .contextClick(waitUntilElementVisible(locator))
+                .build()
+                .perform();
     }
 
-    public void hover() {
-
+    public void hover(By locator) {
+        WebElement elem = waitUntilElementVisible(locator);
+        new Actions(driver).moveToElement(elem).build().perform();
     }
 
-    public void focus() {
-
+    public void focus(By locator) {
+        WebElement element = waitUntilElementVisible(locator);
+        if("input".equals(element.getTagName())){
+            element.sendKeys("");
+        }
+        else {
+            new Actions(driver).moveToElement(element).perform();
+        }
     }
 
     public void highlight(By locator) {
@@ -169,16 +211,18 @@ public class UIActions {
     }
 
 
-    public void clear() {
-
+    public void clear(By locator) {
+        waitUntilElementVisible(locator).clear();
     }
 
-    public void write() {
-
+    public void write(By locator, String text) {
+        waitUntilElementVisible(locator).sendKeys(text);
     }
 
-    public void clearThenWrite() {
-
+    public void clearThenWrite(By locator, String text) {
+        WebElement inputElem = waitUntilElementVisible(locator);
+        inputElem.clear();
+        inputElem.sendKeys(text);
     }
 
     public void waitfor(int second) {
@@ -225,5 +269,4 @@ public class UIActions {
         elementElementByIdx.click();
     }
     //endregion
-
 }

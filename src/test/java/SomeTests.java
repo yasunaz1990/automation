@@ -15,10 +15,7 @@ public class SomeTests extends UIActions {
     public void test_case() {
        openBrowser(BrowserType.CHROME);
        openSite("https://trello.com");
-       highlight(By.xpath("//*[text()='Log In']"));
-       waitfor(5);
-       click("Log In");
-       openTab();
+       focus(By.cssSelector("[name='email']"));
        waitfor(5);
        closeBrowser();
     }

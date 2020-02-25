@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6fb5d510-c0bc-4098-b9f2-07fb7fd478e0" name="Default Changelist" comment="" />
+    <list default="true" id="6fb5d510-c0bc-4098-b9f2-07fb7fd478e0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/test/java/SomeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SomeTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/utility/UIActions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/utility/UIActions.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +18,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -23,6 +29,7 @@
     </option>
   </component>
   <component name="ProjectId" id="1YGsG6D1SfHeaESNk6zuitNEoyG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -65,22 +72,22 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1484" height="356" key="GridCell.Tab.0.bottom" timestamp="1582606982078">
+    <state width="1484" height="356" key="GridCell.Tab.0.bottom" timestamp="1582610652096">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
-    <state width="1484" height="356" key="GridCell.Tab.0.bottom/0.23.1680.969@0.23.1680.969" timestamp="1582606982078" />
-    <state width="1484" height="356" key="GridCell.Tab.0.center" timestamp="1582606982077">
+    <state width="1484" height="356" key="GridCell.Tab.0.bottom/0.23.1680.969@0.23.1680.969" timestamp="1582610652096" />
+    <state width="1484" height="356" key="GridCell.Tab.0.center" timestamp="1582610652095">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
-    <state width="1484" height="356" key="GridCell.Tab.0.center/0.23.1680.969@0.23.1680.969" timestamp="1582606982077" />
-    <state width="1484" height="356" key="GridCell.Tab.0.left" timestamp="1582606982076">
+    <state width="1484" height="356" key="GridCell.Tab.0.center/0.23.1680.969@0.23.1680.969" timestamp="1582610652095" />
+    <state width="1484" height="356" key="GridCell.Tab.0.left" timestamp="1582610652095">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
-    <state width="1484" height="356" key="GridCell.Tab.0.left/0.23.1680.969@0.23.1680.969" timestamp="1582606982076" />
-    <state width="1484" height="356" key="GridCell.Tab.0.right" timestamp="1582606982078">
+    <state width="1484" height="356" key="GridCell.Tab.0.left/0.23.1680.969@0.23.1680.969" timestamp="1582610652095" />
+    <state width="1484" height="356" key="GridCell.Tab.0.right" timestamp="1582610652096">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
-    <state width="1484" height="356" key="GridCell.Tab.0.right/0.23.1680.969@0.23.1680.969" timestamp="1582606982078" />
+    <state width="1484" height="356" key="GridCell.Tab.0.right/0.23.1680.969@0.23.1680.969" timestamp="1582610652096" />
     <state x="445" y="243" key="SettingsEditor" timestamp="1582596060525">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
