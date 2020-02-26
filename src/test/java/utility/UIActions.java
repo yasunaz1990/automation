@@ -1,20 +1,16 @@
 package utility;
 
 import commons.BrowserType;
-import commons.Colors;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class UIActions {
 
@@ -23,15 +19,25 @@ public class UIActions {
     private static Integer WAIT_TIME;
     private static ArrayList<String> tabs;
 
+
     public UIActions() {
-        WAIT_TIME = 40;
+        WAIT_TIME = 30;
     }
+
 
     public UIActions(Integer implicitWaitTime) {
         WAIT_TIME = implicitWaitTime;
     }
 
+
     //region Browser Actions
+    public void openBrowser() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, WAIT_TIME);
+    }
+
+
     public WebDriver getDriver() {
         if(driver == null) {
             StringBuilder strb = new StringBuilder();
@@ -45,11 +51,6 @@ public class UIActions {
         return driver;
     }
 
-    public void openBrowser() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, WAIT_TIME);
-    }
 
     public void openBrowser(String browserType) {
         if(browserType.equalsIgnoreCase(BrowserType.CHROME)) {
@@ -62,15 +63,23 @@ public class UIActions {
             driver = new EdgeDriver();
             wait = new WebDriverWait(driver, WAIT_TIME);
         }
+        else if(browserType.equalsIgnoreCase(BrowserType.FIREFOX)) {
+            WebDriverManager.firefoxdriver().setup();
+            driver = new FirefoxDriver();
+            wait = new WebDriverWait(driver, WAIT_TIME);
+        }
     }
+
 
     public void fullScreen() {
         driver.manage().window().fullscreen();
     }
 
+
     public void maximize() {
         driver.manage().window().maximize();
     }
+
 
     public void closeBrowser() {
         if(driver != null){
@@ -79,11 +88,24 @@ public class UIActions {
         }
     }
 
+
+    public void switchToIFrame() {
+        WebElement iframe = waitUntilElementVisible(withTag("iframe"));
+        driver = driver.switchTo().frame(iframe);
+    }
+
+
+    public void switchBackFromIframe() {
+        driver = driver.switchTo().defaultContent();
+    }
+
+
     public void openNewTab() {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
     }
+
 
     public void switchToTab() {
         ((JavascriptExecutor) driver).executeScript("window.open()");
@@ -91,59 +113,65 @@ public class UIActions {
         driver.switchTo().window(tabs.get(1));
     }
 
+
     public void closeTab() {
         driver.close();
         driver.switchTo().window(tabs.get(0));
     }
+
 
     public void loadCookie(String name, String token) {
         Cookie cookie = new Cookie(name, token);
         driver.manage().addCookie(cookie);
     }
 
+
     public void deleteCookie(String name) {
         driver.manage().deleteCookieNamed(name);
     }
 
+
     public void deleteAllCookies() {
         driver.manage().deleteAllCookies();
     }
-
     //endregion
 
 
-
-
-
-
     //region Page Actions
-    public void openSite(String url) {
+    public void gotoSite(String url) {
         driver.get(url);
     }
+
 
     public void reload() {
         driver.navigate().refresh();
     }
 
+
     public void goBack() {
         driver.navigate().back();
     }
+
 
     public void goFoward() {
         driver.navigate().forward();
     }
 
+
     public String getCurrentURL() {
         return driver.getCurrentUrl();
     }
+
 
     public String title() {
         return driver.getTitle();
     }
 
+
     public void click(By locator) {
         waitUntilElementVisible(locator).click();
     }
+
 
     public void click(String text){
         String expression = "//*[text()='" + text + "']";
@@ -175,6 +203,7 @@ public class UIActions {
                 .perform();
     }
 
+
     public void rightClick(By locator) {
         new Actions(driver)
                 .contextClick(waitUntilElementVisible(locator))
@@ -182,10 +211,12 @@ public class UIActions {
                 .perform();
     }
 
+
     public void hover(By locator) {
         WebElement elem = waitUntilElementVisible(locator);
         new Actions(driver).moveToElement(elem).build().perform();
     }
+
 
     public void focus(By locator) {
         WebElement element = waitUntilElementVisible(locator);
@@ -197,14 +228,76 @@ public class UIActions {
         }
     }
 
+
+    public void mouseDownOn(By element) {
+        new Actions(driver)
+                .moveToElement(waitUntilElementVisible(element))
+                .clickAndHold().perform();
+    }
+
+
+    public void moveTo(By element) {
+        new Actions(driver).moveToElement(waitUntilElementVisible(element))
+                .build()
+                .perform();
+    }
+
+
+    public void mouseUpOn(By element) {
+        new Actions(driver).moveToElement(waitUntilElementVisible(element))
+                .release()
+                .perform();
+    }
+
+
+    public void dragAndDrop(By base, By target) {
+        mouseDownOn(base);
+        moveTo(target);
+        mouseUpOn(target);
+    }
+
+
+    public void moveViewToElement(By selector) {
+        WebElement where;
+        Actions builder = new Actions(driver);
+        where = waitUntilElementVisible(selector);
+        builder.moveToElement(where).perform();
+    }
+
+
+    public void scrollToBottom(){
+        String jscode ="window.scrollTo(0, document.body.scrollHeight)";
+        ((JavascriptExecutor) driver).executeScript(jscode);
+    }
+
+
+    public void scrollToTop() {
+        String jscode ="window.scrollTo(0, 0)";
+        ((JavascriptExecutor) driver).executeScript(jscode);
+    }
+
+
+    public void scrollDownByPixel(int pixelnum) {
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("window.scrollBy(0,"+pixelnum+")");
+    }
+
+
+    public void scrollUpByPixel(int pixelnum) {
+        pixelnum = pixelnum - (pixelnum*2);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,"+pixelnum+")");
+    }
+
+
     public void highlight(By locator) {
         WebElement element = waitUntilElementVisible(locator);
         JavascriptExecutor js = (JavascriptExecutor) driver;
-       // js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
         js.executeScript("arguments[0].setAttribute('style', 'border: 3px solid red;');", element);
     }
 
-    public void textHighligh(By locator) {
+
+    public void textHighlight(By locator) {
         WebElement element = waitUntilElementVisible(locator);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
@@ -215,15 +308,18 @@ public class UIActions {
         waitUntilElementVisible(locator).clear();
     }
 
+
     public void write(By locator, String text) {
         waitUntilElementVisible(locator).sendKeys(text);
     }
+
 
     public void clearThenWrite(By locator, String text) {
         WebElement inputElem = waitUntilElementVisible(locator);
         inputElem.clear();
         inputElem.sendKeys(text);
     }
+
 
     public void waitfor(int second) {
         try{
@@ -234,13 +330,59 @@ public class UIActions {
     }
 
 
+    public void submit(By element) {
+        waitUntilElementVisible(element).submit();
+    }
+
+
+    public WebElement element(By locator) {
+        WebElement elem = waitUntilElementVisible(locator);
+        return elem;
+    }
+
+
+    public List<WebElement> listOfElements(By locator) {
+        waitUntilElementVisible(locator);
+        return driver.findElements(locator);
+    }
     //endregion
 
 
     //region Selectors
+    public By css(String expression) {
+        return By.cssSelector(expression);
+    }
 
+
+    public By id(String expression) {
+        return By.id(expression);
+    }
+
+
+    public By xpath(String expression) {
+        return By.id(expression);
+    }
+
+
+    public By link(String expression) {
+        return By.linkText(expression);
+    }
+
+
+    public By linktextContains(String expression) {
+        return By.partialLinkText(expression);
+    }
+
+
+    public By nameAttribute(String expression) {
+        return By.name(expression);
+    }
+
+
+    public By withTag(String expression) {
+        return By.tagName(expression);
+    }
     //endregion
-
 
 
     //region Waiters
@@ -249,9 +391,11 @@ public class UIActions {
         return elem;
     }
 
+
     private boolean waitUntilElementInvisible(By locator) {
         return false;
     }
+
 
     public boolean isElementDisplayed() {
         return false;
@@ -260,8 +404,6 @@ public class UIActions {
 
 
     //region Private Helper Methods
-
-
     private void click_NthElement(By element, int index) {
         waitUntilElementVisible(element);
         List<WebElement> elementAllElements = driver.findElements(element);
