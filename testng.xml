@@ -2,25 +2,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test Suites">
 
+    <listeners>
+        <listener class-name="utility.ITestExecutionListener"/>
+    </listeners>
+
     <test name="Smoke">
         <classes>
             <class name="tests.SomeTests"/>
         </classes>
     </test>
-
-
-    <test name="Reg">
-        <classes>
-            <class name="tests.RegressionTest"/>
-        </classes>
-    </test>
-
-
-    <test name="E2E">
-        <classes>
-            <class name="tests.SystemE2E"/>
-        </classes>
-    </test>
 </suite>
-
 

@@ -1,7 +1,6 @@
 package commons;
 
 public interface BrowserType {
-
     // === Google Chrome Browsers === //
     String CHROME = "chrome";
     String CHROME_PRIVATE = "chrome_private";
@@ -18,5 +17,6 @@ public interface BrowserType {
     String EDGE = "ms_edge";
     String EDGE_PRIVATE = "ms_edge_private";
     String IE = "ms_ie";
-
 }
+
+

@@ -1,30 +1,22 @@
 package tests;
 
-import commons.BrowserType;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import commons.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import utility.UIActions;
+import pages.LandingPage;
 
-import java.util.concurrent.TimeUnit;
-
-public class SomeTests extends UIActions {
-
+public class SomeTests  extends BaseTest {
 
     @Test
-    public void test_case() {
-        openBrowser();
-        gotoSite("https://trello.com");
-        click("Log In");
-        highlight(id("user"));
-        write(id("user"), "wesley@burkdesing.biz");
-        openNewTab();
-        gotoSite("https://www.youtube.com");
-        closeTab();
-        closeBrowser();
+    public void invalid_login_should_display_error() {
 
+        String expected = "There isn't an account for this email";
+        String username = "maigaddfdafde@gmail.com";
+        String password = "somepassword";
+
+        new LandingPage()
+                .clickLogin()
+                .signIn(username, password);
     }
 }
+

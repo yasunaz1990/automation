@@ -1,6 +1,7 @@
 package utility;
 
 import commons.BrowserType;
+import commons.DriverUtil;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,64 +13,64 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UIActions {
+public abstract class UIActions {
 
-    private static WebDriver driver;
+    protected static WebDriver driver;
     private static WebDriverWait wait;
-    private static Integer WAIT_TIME;
+    private static Integer WAIT_TIME = 30;
     private static ArrayList<String> tabs;
+    private static Integer CURRENT_TAB_POSITION = 0;
 
+    private static StandByUntil standByUntil;
 
     public UIActions() {
-        WAIT_TIME = 30;
-    }
-
-
-    public UIActions(Integer implicitWaitTime) {
-        WAIT_TIME = implicitWaitTime;
+        driver = DriverUtil.getDriver();
+        wait = new WebDriverWait(driver, WAIT_TIME);
+        standByUntil = new StandByUntil(wait);
     }
 
 
     //region Browser Actions
-    public void openBrowser() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        wait = new WebDriverWait(driver, WAIT_TIME);
-    }
+//    public void openBrowser() {
+//        WAIT_TIME = 30;
+//        WebDriverManager.chromedriver().setup();
+//        driver = new ChromeDriver();
+//        wait = new WebDriverWait(driver, WAIT_TIME);
+//        standByUntil = new StandByUntil(wait);
+//    }
 
-
-    public WebDriver getDriver() {
-        if(driver == null) {
-            StringBuilder strb = new StringBuilder();
-            strb.append("\n\nException Message : \n");
-            strb.append("\tWebDriver is not initiated, please instantiate WebDriver by\n");
-            strb.append("\tcalling openBrowser() method. \n\n");
-            strb.append("Exception Location:  Class  -> UIActions\n");
-            strb.append("Exception Occured :  Method -> getDriver()\n");
-            throw new NullPointerException(strb.toString());
-        }
-        return driver;
-    }
-
-
-    public void openBrowser(String browserType) {
-        if(browserType.equalsIgnoreCase(BrowserType.CHROME)) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            wait = new WebDriverWait(driver, WAIT_TIME);
-        }
-        else if(browserType.equalsIgnoreCase(BrowserType.EDGE)) {
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver();
-            wait = new WebDriverWait(driver, WAIT_TIME);
-        }
-        else if(browserType.equalsIgnoreCase(BrowserType.FIREFOX)) {
-            WebDriverManager.firefoxdriver().setup();
-            driver = new FirefoxDriver();
-            wait = new WebDriverWait(driver, WAIT_TIME);
-        }
-    }
-
+//    public void openBrowser(String browserType) {
+//        if(browserType.equalsIgnoreCase(BrowserType.CHROME)) {
+//            WebDriverManager.chromedriver().setup();
+//            driver = new ChromeDriver();
+//            DriverUtil.setDriver(driver);
+//        }
+//        else if(browserType.equalsIgnoreCase(BrowserType.EDGE)) {
+//            WebDriverManager.edgedriver().setup();
+//            driver = new EdgeDriver();
+//        }
+//        else if(browserType.equalsIgnoreCase(BrowserType.FIREFOX)) {
+//            WebDriverManager.firefoxdriver().setup();
+//            driver = new FirefoxDriver();
+//            CHOSEN_BROWSER = BrowserType.FIREFOX;
+//        }
+//
+//        wait = new WebDriverWait(driver, WAIT_TIME);
+//        standByUntil = new StandByUntil(wait);
+//    }
+//
+//    public WebDriver getDriver() {
+//        if(driver == null) {
+//            StringBuilder strb = new StringBuilder();
+//            strb.append("\n\nException Message : \n");
+//            strb.append("\tWebDriver is not initiated, please instantiate WebDriver by\n");
+//            strb.append("\tcalling openBrowser() method. \n\n");
+//            strb.append("Exception Location:  Class  -> UIActions\n");
+//            strb.append("Exception Occured :  Method -> getDriver()\n");
+//            throw new NullPointerException(strb.toString());
+//        }
+//        return driver;
+//    }
 
     public void fullScreen() {
         driver.manage().window().fullscreen();
@@ -81,16 +82,14 @@ public class UIActions {
     }
 
 
-    public void closeBrowser() {
-        if(driver != null){
-            driver.close();
-            driver.quit();
-        }
+    public void switchToIFrame() {
+        WebElement iframe = waitUntilElementVisible(By.tagName("iframe"));
+        driver = driver.switchTo().frame(iframe);
     }
 
 
-    public void switchToIFrame() {
-        WebElement iframe = waitUntilElementVisible(withTag("iframe"));
+    public void switchToIFrame(By locator) {
+        WebElement iframe = waitUntilElementVisible(locator);
         driver = driver.switchTo().frame(iframe);
     }
 
@@ -103,14 +102,12 @@ public class UIActions {
     public void openNewTab() {
         ((JavascriptExecutor) driver).executeScript("window.open()");
         tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
+        driver.switchTo().window(tabs.get(0));
+//        driver.switchTo().window(tabs.get(1));
     }
 
-
-    public void switchToTab() {
-        ((JavascriptExecutor) driver).executeScript("window.open()");
-        tabs = new ArrayList<String>(driver.getWindowHandles());
-        driver.switchTo().window(tabs.get(1));
+    public void switchToTab(int tabNumber) {
+        driver.switchTo().window(tabs.get(tabNumber));
     }
 
 
@@ -169,7 +166,12 @@ public class UIActions {
 
 
     public void click(By locator) {
-        waitUntilElementVisible(locator).click();
+        try{
+            WebElement element = standByUntil.elementIsClickable(locator);
+            element.click();
+        }catch (Exception ex) {
+            System.out.println("Element was not clickalbe. Check its locators logic ( Ex: css, xpath .etc");
+        }
     }
 
 
@@ -198,7 +200,7 @@ public class UIActions {
 
     public void doubleClick(By locator) {
         new Actions(driver)
-                .doubleClick(waitUntilElementVisible(locator))
+                .doubleClick(standByUntil.elementIsClickable(locator))
                 .build()
                 .perform();
     }
@@ -206,7 +208,7 @@ public class UIActions {
 
     public void rightClick(By locator) {
         new Actions(driver)
-                .contextClick(waitUntilElementVisible(locator))
+                .contextClick(standByUntil.elementIsClickable(locator))
                 .build()
                 .perform();
     }
@@ -310,7 +312,9 @@ public class UIActions {
 
 
     public void write(By locator, String text) {
-        waitUntilElementVisible(locator).sendKeys(text);
+
+//        waitUntilElementVisible(locator).sendKeys(text);
+        standByUntil.elementIsThereAndVisibleToUser(locator).sendKeys(text);
     }
 
 
@@ -336,8 +340,9 @@ public class UIActions {
 
 
     public WebElement element(By locator) {
-        WebElement elem = waitUntilElementVisible(locator);
-        return elem;
+       // WebElement elem = waitUntilElementVisible(locator);
+        WebElement element = standByUntil.elementIsThereAndVisibleToUser(locator);
+        return element;
     }
 
 
@@ -360,7 +365,7 @@ public class UIActions {
 
 
     public By xpath(String expression) {
-        return By.id(expression);
+        return By.xpath(expression);
     }
 
 
