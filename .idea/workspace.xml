@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6fb5d510-c0bc-4098-b9f2-07fb7fd478e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/RegressionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/SomeTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/SystemE2E.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/SomeTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/LandingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/LandingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/SomeTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/SomeTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/utility/Steps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/utility/Steps.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,24 +39,64 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="tests" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.SomeTests.test_case">
+  <component name="RunManager" selected="TestNG.SomeTests.login_test">
     <configuration name="SomeTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tests.SomeTests" />
-      <module name="testautomation" />
+      <module name="uitestautomation" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SomeTests.invalid_login_should_display_error" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="uitestautomation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.SomeTests" />
+      <option name="METHOD_NAME" value="invalid_login_should_display_error" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SomeTests.login_test" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="uitestautomation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.SomeTests" />
+      <option name="METHOD_NAME" value="login_test" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="SomeTests.test_case" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="testautomation" />
+      <module name="uitestautomation" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="tests.SomeTests" />
       <option name="METHOD_NAME" value="test_case" />
@@ -70,6 +109,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.SomeTests.login_test" />
+        <item itemvalue="TestNG.SomeTests.invalid_login_should_display_error" />
         <item itemvalue="TestNG.SomeTests.test_case" />
         <item itemvalue="Application.SomeTests" />
       </list>
@@ -89,57 +130,77 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="642" y="209" key="#com.intellij.ide.util.MemberChooser" timestamp="1582613770380">
+    <state x="406" y="186" key="#Project_Structure" timestamp="1583729421573">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
-    <state x="642" y="209" key="#com.intellij.ide.util.MemberChooser/0.23.1680.969@0.23.1680.969" timestamp="1582613770380" />
+    <state x="406" y="186" key="#Project_Structure/0.23.1680.969@0.23.1680.969" timestamp="1583729421573" />
+    <state x="642" y="209" key="#com.intellij.ide.util.MemberChooser" timestamp="1583724442378">
+      <screen x="0" y="23" width="1680" height="969" />
+    </state>
+    <state x="642" y="209" key="#com.intellij.ide.util.MemberChooser/0.23.1680.969@0.23.1680.969" timestamp="1583724442378" />
+    <state x="542" y="285" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1583975196094">
+      <screen x="0" y="23" width="1680" height="969" />
+    </state>
+    <state x="542" y="285" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.23.1680.969@0.23.1680.969" timestamp="1583975196094" />
     <state x="655" y="382" width="454" height="276" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1582683951404">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
     <state x="655" y="382" width="454" height="276" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1680.969@0.23.1680.969" timestamp="1582683951404" />
-    <state x="567" y="240" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1582620524581">
+    <state x="567" y="240" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583728403920">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
-    <state x="567" y="240" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.969@0.23.1680.969" timestamp="1582620524581" />
-    <state width="1484" height="310" key="GridCell.Tab.0.bottom" timestamp="1582683625126">
+    <state x="567" y="240" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.969@0.23.1680.969" timestamp="1583728403920" />
+    <state width="1082" height="310" key="GridCell.Tab.0.bottom" timestamp="1584400177400">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
     <state width="1484" height="156" key="GridCell.Tab.0.bottom/0.23.1680.966@0.23.1680.966" timestamp="1582617396529" />
     <state width="1484" height="156" key="GridCell.Tab.0.bottom/0.23.1680.967@0.23.1680.967" timestamp="1582617480289" />
-    <state width="1484" height="310" key="GridCell.Tab.0.bottom/0.23.1680.969@0.23.1680.969" timestamp="1582683625126" />
+    <state width="1082" height="310" key="GridCell.Tab.0.bottom/0.23.1680.969@0.23.1680.969" timestamp="1584400177400" />
     <state width="1484" height="156" key="GridCell.Tab.0.bottom/0.23.1680.972@0.23.1680.972" timestamp="1582618560390" />
     <state width="1484" height="156" key="GridCell.Tab.0.bottom/0.23.1680.973@0.23.1680.973" timestamp="1582618217199" />
-    <state width="1484" height="310" key="GridCell.Tab.0.center" timestamp="1582683625124">
+    <state width="1082" height="310" key="GridCell.Tab.0.center" timestamp="1584400177399">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
     <state width="1484" height="156" key="GridCell.Tab.0.center/0.23.1680.966@0.23.1680.966" timestamp="1582617396528" />
     <state width="1484" height="156" key="GridCell.Tab.0.center/0.23.1680.967@0.23.1680.967" timestamp="1582617480288" />
-    <state width="1484" height="310" key="GridCell.Tab.0.center/0.23.1680.969@0.23.1680.969" timestamp="1582683625124" />
+    <state width="1082" height="310" key="GridCell.Tab.0.center/0.23.1680.969@0.23.1680.969" timestamp="1584400177399" />
     <state width="1484" height="156" key="GridCell.Tab.0.center/0.23.1680.972@0.23.1680.972" timestamp="1582618560389" />
     <state width="1484" height="156" key="GridCell.Tab.0.center/0.23.1680.973@0.23.1680.973" timestamp="1582618217199" />
-    <state width="1484" height="310" key="GridCell.Tab.0.left" timestamp="1582683625124">
+    <state width="1082" height="310" key="GridCell.Tab.0.left" timestamp="1584400177398">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
     <state width="1484" height="156" key="GridCell.Tab.0.left/0.23.1680.966@0.23.1680.966" timestamp="1582617396528" />
     <state width="1484" height="156" key="GridCell.Tab.0.left/0.23.1680.967@0.23.1680.967" timestamp="1582617480288" />
-    <state width="1484" height="310" key="GridCell.Tab.0.left/0.23.1680.969@0.23.1680.969" timestamp="1582683625124" />
+    <state width="1082" height="310" key="GridCell.Tab.0.left/0.23.1680.969@0.23.1680.969" timestamp="1584400177398" />
     <state width="1484" height="156" key="GridCell.Tab.0.left/0.23.1680.972@0.23.1680.972" timestamp="1582618560389" />
     <state width="1484" height="156" key="GridCell.Tab.0.left/0.23.1680.973@0.23.1680.973" timestamp="1582618217198" />
-    <state width="1484" height="310" key="GridCell.Tab.0.right" timestamp="1582683625125">
+    <state width="1082" height="310" key="GridCell.Tab.0.right" timestamp="1584400177399">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
     <state width="1484" height="156" key="GridCell.Tab.0.right/0.23.1680.966@0.23.1680.966" timestamp="1582617396528" />
     <state width="1484" height="156" key="GridCell.Tab.0.right/0.23.1680.967@0.23.1680.967" timestamp="1582617480288" />
-    <state width="1484" height="310" key="GridCell.Tab.0.right/0.23.1680.969@0.23.1680.969" timestamp="1582683625125" />
+    <state width="1082" height="310" key="GridCell.Tab.0.right/0.23.1680.969@0.23.1680.969" timestamp="1584400177399" />
     <state width="1484" height="156" key="GridCell.Tab.0.right/0.23.1680.972@0.23.1680.972" timestamp="1582618560389" />
     <state width="1484" height="156" key="GridCell.Tab.0.right/0.23.1680.973@0.23.1680.973" timestamp="1582618217199" />
-    <state x="445" y="243" key="SettingsEditor" timestamp="1582596060525">
+    <state x="328" y="168" key="SettingsEditor" timestamp="1583978256281">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
-    <state x="445" y="243" key="SettingsEditor/0.23.1680.969@0.23.1680.969" timestamp="1582596060525" />
-    <state x="506" y="319" key="com.intellij.ide.util.TipDialog" timestamp="1582681861044">
+    <state x="328" y="168" key="SettingsEditor/0.23.1680.969@0.23.1680.969" timestamp="1583978256281" />
+    <state x="506" y="319" key="com.intellij.ide.util.TipDialog" timestamp="1584400032552">
       <screen x="0" y="23" width="1680" height="969" />
     </state>
-    <state x="506" y="319" key="com.intellij.ide.util.TipDialog/0.23.1680.969@0.23.1680.969" timestamp="1582681861044" />
+    <state x="506" y="319" key="com.intellij.ide.util.TipDialog/0.23.1680.969@0.23.1680.969" timestamp="1584400032552" />
+    <state x="530" y="229" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1583712980069">
+      <screen x="0" y="23" width="1680" height="969" />
+    </state>
+    <state x="530" y="229" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.23.1680.969@0.23.1680.969" timestamp="1583712980069" />
+    <state width="600" height="424" key="javadoc.popup" timestamp="1583729164392">
+      <screen x="0" y="23" width="1680" height="969" />
+    </state>
+    <state width="600" height="424" key="javadoc.popup/0.23.1680.969@0.23.1680.969" timestamp="1583729164392" />
+    <state x="498" y="227" width="819" height="533" key="new project wizard" timestamp="1583087658466">
+      <screen x="0" y="23" width="1680" height="969" />
+    </state>
+    <state x="498" y="227" width="819" height="533" key="new project wizard/0.23.1680.969@0.23.1680.969" timestamp="1583087658466" />
   </component>
 </project>

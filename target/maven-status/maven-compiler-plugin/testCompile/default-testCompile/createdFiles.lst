@@ -1,7 +1,10 @@
-tests/SystemE2E.class
+commons/DriverUtil.class
+utility/ITestExecutionListener.class
 tests/SomeTests.class
-pages/WelcomePage.class
 utility/UIActions.class
-commons/Colors.class
+utility/Steps.class
+utility/StandByUntil.class
 commons/BrowserType.class
-tests/RegressionTest.class
+commons/BaseTest.class
+pages/LandingPage.class
+pages/LoginPage.class

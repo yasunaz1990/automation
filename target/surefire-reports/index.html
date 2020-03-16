@@ -102,7 +102,7 @@
                     <div class="method-list-content passed suite-Test_Suites">
                       <span>
                         <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Test_Suites" title="tests.SomeTests" hash-for-method="test_case">test_case</a> <!-- method navigator-link -->
+                        <a href="#" class="method navigator-link" panel-name="suite-Test_Suites" title="tests.SomeTests" hash-for-method="login_test">login_test</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Test_Suites -->
@@ -125,9 +125,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="test_case">
-                  </a> <!-- test_case -->
-                  <span class="method-name">test_case</span>
+                  <a name="login_test">
+                  </a> <!-- login_test -->
+                  <span class="method-name">login_test</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -142,6 +142,9 @@
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
 &lt;suite guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot; name=&quot;Test Suites&quot;&gt;
+  &lt;listeners&gt;
+    &lt;listener class-name=&quot;utility.ITestExecutionListener&quot;/&gt;
+  &lt;/listeners&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Smoke&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;tests.SomeTests&quot;/&gt;
@@ -186,14 +189,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'test_case')
+data.setCell(0, 1, 'login_test')
 data.setCell(0, 2, 'tests.SomeTests')
-data.setCell(0, 3, 10497);
+data.setCell(0, 3, 9056);
 window.suiteTableData['Test_Suites']= { tableData: data, tableDiv: 'times-div-Test_Suites'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 10 seconds</span>
+              <span class="suite-total-time">Total running time: 9 seconds</span>
               <div id="times-div-Test_Suites">
               </div> <!-- times-div-Test_Suites -->
             </div> <!-- times-div -->
@@ -220,10 +223,18 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">tests.SomeTests</div> <!-- chronological-class-name -->
-              <div class="test-method">
-                <span class="method-name">test_case</span>
+              <div class="configuration-method before">
+                <span class="method-name">beforeEachTestCase</span>
                 <span class="method-start">0 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">login_test</span>
+                <span class="method-start">1167 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method after">
+                <span class="method-name">afterEachTestCase</span>
+                <span class="method-start">10225 ms</span>
+              </div> <!-- configuration-method after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
       </div> <!-- main-panel-root -->

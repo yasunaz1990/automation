@@ -22,3 +22,8 @@ public class Steps {
         testcase.addScreenCaptureFromBase64String(screenshot, message);
     }
 }
+
+
+
+
+

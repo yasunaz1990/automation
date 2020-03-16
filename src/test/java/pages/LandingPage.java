@@ -21,6 +21,7 @@ public class LandingPage extends UIActions {
 
     // User Actions
     public LoginPage clickLogin() {
+        waitfor(1);
         click(login_link);
         return new LoginPage();
     }
