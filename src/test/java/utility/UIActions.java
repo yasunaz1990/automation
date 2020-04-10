@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class UIActions {
+public  class UIActions {
 
     protected static WebDriver driver;
     private static WebDriverWait wait;
